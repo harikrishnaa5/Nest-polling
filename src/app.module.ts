@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PollModule } from './poll/poll.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       useFactory: async(configService: ConfigService) => ({
         uri: configService.get<string>('MONGO_URI'),
       })
-    })],
+    }),
+    PollModule],
     controllers: [AppController],
     providers: [AppService],
 })
